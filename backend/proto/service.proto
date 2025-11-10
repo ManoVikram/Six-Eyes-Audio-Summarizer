@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package servicepb;
+
+option go_package = "github.com/ManoVikram/AI-Podcast-Summarizer/backend/api/proto";
+
+message SummarizePodcastRequest {
+    bytes audio_bytes = 1;
+    string audio_format = 2;
+    optional string language_hint = 3;
+    bool generate_blog = 4;
+    bool generate_tts = 5;
+    map<string, string> metadata = 6;
+}
+
+message SummarizePodcastResponse {
+    string transcript = 1;
+    repeated string bullet_points = 2;
+    string summary_paragraph = 3;
+    optional string blog_post = 4;
+    optional bytes summary_audio_bytes = 5;
+    map<string, string> metadata = 6;
+}
+
+service PodcastSummarizerService {
+    rpc ProcessPodcast(SummarizePodcastRequest) returns (SummarizePodcastResponse);
+}
