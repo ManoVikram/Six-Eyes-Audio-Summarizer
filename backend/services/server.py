@@ -24,7 +24,7 @@ class PodcastSummarizerService(service_pb2_grpc.PodcastSummarizerServiceServicer
         blog_post = generate_blog_post(transcript=transcript) if request.generate_blog else ""
 
         # Step 4 - Convert summary to speech (TTS) [Optional]
-        summary_audio_bytes = generate_tts(summary_text=summary_paragraph)
+        summary_audio_bytes = generate_tts(summary_text=summary_paragraph) if request.generate_tts else b""
 
         # Step 5 - Prepare and return the response
         response = service_pb2.SummarizePodcastResponse(
@@ -36,7 +36,7 @@ class PodcastSummarizerService(service_pb2_grpc.PodcastSummarizerServiceServicer
             metadata={
                 "transcript_model": "faster_whisper_medium",
                 "summarization_model": "ollama_llama2",
-                "tts_model": "openai_gpt-4o-mini-tts"
+                "tts_model": "openai_gpt-4o-mini-tts" if request.generate_tts else ""
             }
         )
 
