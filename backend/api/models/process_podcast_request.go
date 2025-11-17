@@ -1,7 +1,7 @@
 package models
 
 type ProcessPodcastRequest struct {
-	AudioBytes   []byte            `json:"audio_bytes" binding:"required"`
+	AudioB64     string            `json:"audio_b64" binding:"required"`
 	AudioFormat  string            `json:"audio_format" binding:"required"`
 	LanguageHint string            `json:"language_hint"`
 	GenerateBlog bool              `json:"generate_blog"`

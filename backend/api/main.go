@@ -11,11 +11,16 @@ import (
 	"github.com/ManoVikram/AI-Podcast-Summarizer/backend/api/routes"
 	"github.com/ManoVikram/AI-Podcast-Summarizer/backend/api/services"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
 	// Step 1 - Connect to the Python gRPC server
+	godotenv.Load()
 	grpcAddress := os.Getenv("GRPC_SERVER_ADDRESS")
+	if grpcAddress == "" {
+		grpcAddress = "localhost:50051"
+	}
 	connection, err := grpc.NewClient(grpcAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatal("Failed to connect to gRPC server: ", err)
