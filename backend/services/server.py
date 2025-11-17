@@ -3,9 +3,9 @@ import os
 
 import grpc
 from dotenv import load_dotenv
-from backend.services.pipeline.summarize import generate_blog_post, summarize_text
-from backend.services.pipeline.tts import generate_tts
-from backend.services.pipeline.whisper import transcribe_audio
+from pipeline.summarize import generate_blog_post, summarize_text
+from pipeline.tts import generate_tts
+from pipeline.whisper import transcribe_audio
 from proto import service_pb2, service_pb2_grpc
 
 
