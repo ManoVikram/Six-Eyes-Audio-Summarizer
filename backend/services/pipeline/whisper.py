@@ -1,7 +1,7 @@
 from faster_whisper import WhisperModel
 import tempfile
 
-model = WhisperModel("medium", device="metal")
+model = WhisperModel("medium", device="auto")
 
 def transcribe_audio(audio_bytes, language_hint):
     # Step 1 - Store the audio bytes in a temporary file as WhisperModel expects a file path
