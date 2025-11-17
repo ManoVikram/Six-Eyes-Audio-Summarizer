@@ -15,7 +15,7 @@ class PodcastSummarizerService(service_pb2_grpc.PodcastSummarizerServiceServicer
 
     def ProcessPodcast(self, request, context):
         # Step 1 - Transcribe Audio
-        transcript = transcribe_audio(audio_bytes=request.audio_bytes, language_hint=request.language_hint)
+        transcript = transcribe_audio(audio_bytes=request.audio_bytes, audio_format=request.audio_format, language_hint=request.language_hint)
 
         # Step 2 - Summarize the transcript
         bullet_points, summary_paragraph = summarize_text(transcript=transcript)
