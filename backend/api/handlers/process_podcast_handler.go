@@ -85,7 +85,7 @@ func ProcessPodcastHandler(services *services.Services) gin.HandlerFunc {
 			SummaryParagrah: grpcResponse.SummaryParagraph,
 			BlogPost:        *grpcResponse.BlogPost,
 			SummaryAudioB64: summaryAudioB64,
-			Metadata:        grpcRequest.Metadata,
+			Metadata:        grpcResponse.Metadata,
 		}
 
 		// Step 5 - Return the response
