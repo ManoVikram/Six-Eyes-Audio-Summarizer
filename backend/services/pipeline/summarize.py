@@ -9,6 +9,10 @@ def summarize_text(transcript):
         1) A list of concise bullet points
         2) One short paragraph summary
 
+        Output format:
+        1) The bullet points should start with - and no title / sub-title
+        2) Bullet points and summary paragraph should by split by two \n characters and not title / sub-title
+
         Transcript:
         {transcript}
         """
@@ -30,7 +34,7 @@ def summarize_text(transcript):
     paragraph_lines = [line.strip() for line in text.split("\n") if line.strip() != "" and not line.strip().startswith("- ")]
     summary_paragraph = " ".join(paragraph_lines).strip()
 
-    return bullet_points, summary_paragraph
+    return bullet_points or [], summary_paragraph or ""
 
 def generate_blog_post(transcript):
     # Step 1 - Construct the prompt for blog post generation
