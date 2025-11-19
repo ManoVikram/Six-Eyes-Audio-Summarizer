@@ -35,7 +35,7 @@ class PodcastSummarizerService(service_pb2_grpc.PodcastSummarizerServiceServicer
             summary_audio_bytes=summary_audio_bytes,
             metadata={
                 "transcript_model": "faster_whisper_medium",
-                "summarization_model": "ollama_llama2",
+                "summarization_model": "whisper",
                 "tts_model": "openai_gpt-4o-mini-tts" if request.generate_tts else ""
             }
         )
