@@ -15,7 +15,7 @@ def summarize_text(transcript):
     
     # Step 2 - Call the Ollama API to get the summary
     response = ollama.chat(
-        model="llama2",
+        model="mistral",
         messages=[
             {"role": "system", "content": "You are a helpful assistant that summarizes podcast transcripts."},
             {"role": "user", "content": prompt}
