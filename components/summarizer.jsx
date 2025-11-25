@@ -1,5 +1,6 @@
 "use client"
 
+import { Loader2 } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import React, { useRef, useState } from 'react'
@@ -11,6 +12,7 @@ const Player = dynamic(
 
 const Summarizer = () => {
     const [file, setFile] = useState(null)
+    const [isProcessing, setIsProcessing] = useState(false)
 
     const inputFileRef = useRef(null)
 
@@ -35,6 +37,14 @@ const Summarizer = () => {
         if (selectedFile) setFile(selectedFile)
     }
 
+    const processAudio = () => {
+        if (file) {
+            setIsProcessing(true)
+
+            setIsProcessing(false)
+        } else { }
+    }
+
     return (
         <section className='flex flex-col flex-1 p-6 pt-22 bg-gray-200/50 rounded-4xl gap-6'>
             <div className="flex flex-col flex-6 justify-between items-center w-full p-6 bg-white rounded-4xl gap-8">
@@ -49,15 +59,15 @@ const Summarizer = () => {
                         </>
                     ) : (
                         <>
-                            <Image src="/upload-audio-illustration.svg" alt='upload-audio' height={64} width={64} />
+                            <Image src="/upload-audio-illustration.svg" alt='upload-audio' loading='eager' height={64} width={64} />
 
                             <p className='text-sm text-gray-500'>Drop your podcast. I&apos;ll summarize it.</p>
                         </>
                     )}
                 </div>
 
-                <button className='flex justify-center items-center w-2/4 p-3 bg-black text-white hover:drop-shadow-2xl hover:scale-105 transition-all duration-200 rounded-xl cursor-pointer'>
-                    Process
+                <button className='flex justify-center items-center w-2/4 p-3 bg-black text-white hover:drop-shadow-2xl hover:scale-105 transition-all duration-200 rounded-xl cursor-pointer' onClick={processAudio} disabled={isProcessing}>
+                    {isProcessing ? <Loader2 className='animate-spin transition-all' /> : <p>Process</p>}
                 </button>
             </div>
 
