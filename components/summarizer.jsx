@@ -32,7 +32,7 @@ const Summarizer = () => {
     const handleFilePick = (event) => {
         const selectedFile = event.target.files[0]
 
-        setFile(selectedFile)
+        if (selectedFile) setFile(selectedFile)
     }
 
     return (
