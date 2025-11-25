@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const Player = dynamic(
     () => import("@lottiefiles/react-lottie-player").then(mod => mod.Player),
@@ -12,15 +12,40 @@ const Player = dynamic(
 const Summarizer = () => {
     const [file, setFile] = useState(null)
 
+    const inputFileRef = useRef(null)
+
+    const formatFileSize = (bytes) => {
+        if (bytes < 1024) return bytes + " B"
+
+        let kb = bytes / 1024
+        if (kb < 1024) return kb.toFixed(2) + " KB"
+
+        let mb = kb / 1024
+        if (mb < 1024) return mb.toFixed(2) + " MB"
+
+        let gb = mb / 1024
+        return gb.toFixed(2) + " GB"
+    }
+
+    const openFileDialog = () => inputFileRef.current.click()
+
+    const handleFilePick = (event) => {
+        const selectedFile = event.target.files[0]
+
+        setFile(selectedFile)
+    }
+
     return (
         <section className='flex flex-col flex-1 p-6 pt-22 bg-gray-200/50 rounded-4xl gap-6'>
             <div className="flex flex-col flex-6 justify-between items-center w-full p-6 bg-white rounded-4xl gap-8">
-                <div className="flex flex-col flex-1 justify-center items-center w-2/4 border-4 border-dotted rounded-2xl gap-4 cursor-pointer">
+                <div className="flex flex-col flex-1 justify-center items-center w-2/4 border-4 border-dotted rounded-2xl gap-4 cursor-pointer" onClick={openFileDialog}>
+                    <input type="file" accept='audio/*' ref={inputFileRef} className='hidden h-full bg-red-300' onChange={handleFilePick} />
+
                     {file ? (
                         <>
                             <Player src="/audio-lottie.json" className='h-32 w-32' autoplay loop />
 
-                            <p className='-mt-8'>[FILE_NAME] - <span>[FILE_SIZE]</span></p>
+                            <p className='-mt-8 text-sm italic'>{file.name} - <span className='text-gray-400'>{formatFileSize(file.size)}</span></p>
                         </>
                     ) : (
                         <>
