@@ -1,5 +1,6 @@
 "use client"
 
+import { processPodcast } from '@/backend/services/lib/api/helpers'
 import { Loader2 } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
@@ -13,6 +14,8 @@ const Player = dynamic(
 const Summarizer = () => {
     const [file, setFile] = useState(null)
     const [isProcessing, setIsProcessing] = useState(false)
+    const [generateBlogPost, setGenerateBlogPost] = useState(false)
+    const [generateAudioSummary, setGenerateAudioSummary] = useState(false)
 
     const inputFileRef = useRef(null)
 
@@ -37,9 +40,11 @@ const Summarizer = () => {
         if (selectedFile) setFile(selectedFile)
     }
 
-    const processAudio = () => {
+    const processAudio = async () => {
         if (file) {
             setIsProcessing(true)
+
+            const response = await processPodcast(file, file.name.split(".").pop(), generateBlogPost, generateAudioSummary)
 
             setIsProcessing(false)
         } else { }
@@ -68,13 +73,13 @@ const Summarizer = () => {
 
                 <div className="flex justify-between items-center w-2/4 -m-3 gap-2">
                     <label className='flex justify-start items-center w-full rounded-2xl px-4 py-2 border-2 gap-2 cursor-pointer'>
-                        <input type="checkbox" name="generate-blog-post" className='appearance-none w-5 h-5 border-2 border-gray-300 rounded checked:bg-green-700 checked:border-green-700 relative after:content-["✓"] after:absolute after:text-white after:text-sm after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:opacity-0 checked:after:opacity-100 cursor-pointer' />
+                        <input type="checkbox" name="generate-blog-post" className='appearance-none w-5 h-5 border-2 border-gray-300 rounded checked:bg-green-700 checked:border-green-700 relative after:content-["✓"] after:absolute after:text-white after:text-sm after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:opacity-0 checked:after:opacity-100 cursor-pointer' onChange={(event) => setGenerateBlogPost(event.target.checked)} />
 
                         <p>Generate Blog Post</p>
                     </label>
 
                     <label className='flex justify-start items-center w-full rounded-2xl px-4 py-2 border-2 gap-2 cursor-pointer'>
-                        <input type="checkbox" name="generate-blog-post" className='appearance-none w-5 h-5 border-2 border-gray-300 rounded checked:bg-green-700 checked:border-green-700 relative after:content-["✓"] after:absolute after:text-white after:text-sm after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:opacity-0 checked:after:opacity-100 cursor-pointer' />
+                        <input type="checkbox" name="generate-blog-post" className='appearance-none w-5 h-5 border-2 border-gray-300 rounded checked:bg-green-700 checked:border-green-700 relative after:content-["✓"] after:absolute after:text-white after:text-sm after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:opacity-0 checked:after:opacity-100 cursor-pointer' nChange={(event) => setGenerateAudioSummary(event.target.checked)} />
 
                         <p>Generate Audio Summary</p>
                     </label>
