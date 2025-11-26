@@ -79,7 +79,7 @@ const Summarizer = () => {
                     </label>
 
                     <label className='flex justify-start items-center w-full rounded-2xl px-4 py-2 border-2 gap-2 cursor-pointer'>
-                        <input type="checkbox" name="generate-blog-post" className='appearance-none w-5 h-5 border-2 border-gray-300 rounded checked:bg-green-700 checked:border-green-700 relative after:content-["✓"] after:absolute after:text-white after:text-sm after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:opacity-0 checked:after:opacity-100 cursor-pointer' nChange={(event) => setGenerateAudioSummary(event.target.checked)} />
+                        <input type="checkbox" name="generate-blog-post" className='appearance-none w-5 h-5 border-2 border-gray-300 rounded checked:bg-green-700 checked:border-green-700 relative after:content-["✓"] after:absolute after:text-white after:text-sm after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:opacity-0 checked:after:opacity-100 cursor-pointer' onChange={(event) => setGenerateAudioSummary(event.target.checked)} />
 
                         <p>Generate Audio Summary</p>
                     </label>

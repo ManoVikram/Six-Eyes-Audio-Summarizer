@@ -16,6 +16,9 @@ export const processPodcast = async (audioFile, audioFormat, generateBlogPost, g
     // Step 2 - Call the API endpoint to generate a transcript and summarize the audio
     const response = await fetch(`${API_BASE_URL}/api/processaudio`, {
         method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify({
             audio_b64: audio_b64,
             audio_format: audioFormat,
