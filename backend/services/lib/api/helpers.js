@@ -25,7 +25,7 @@ export const processPodcast = async (audioFile, audioFormat, generateBlogPost, g
     })
 
     // Step 3 - Convert the response to JSON
-    const responseData = response.json()
+    const responseData = await response.json()
 
     // Step 4 - Return the response
     return responseData
