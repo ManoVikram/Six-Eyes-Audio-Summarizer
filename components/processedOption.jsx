@@ -33,7 +33,9 @@ const ProcessedOption = ({ buttonTitle, popupTitle, popupContent, isAudio = fals
                         )}
                     </div>
                 ) : (
-                    <></>
+                    <div className="flex justify-center items-center py-4">
+                        <audio src={`data:audio/mp3;base64,${popupContent}`} controls autoPlay />
+                    </div>
                 )}
             </DialogContent>
         </Dialog>
