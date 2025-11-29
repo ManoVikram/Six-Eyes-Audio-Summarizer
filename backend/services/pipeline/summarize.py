@@ -7,7 +7,7 @@ def summarize_text(transcript):
 
         Return exactly:
         - A list of concise bullet points
-        - One short paragraph summary
+        - One short summary paragraph
 
         Output format:
         The bullet points should start with - and no title / sub-title
