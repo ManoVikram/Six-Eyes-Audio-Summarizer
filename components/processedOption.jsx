@@ -19,8 +19,18 @@ const ProcessedOption = ({ buttonTitle, popupTitle, popupContent, isAudio = fals
                 </DialogHeader>
 
                 {!isAudio ? (
-                    <div className='max-h-[60dvh] overflow-auto'>
-                        <p className='text-sm text-gray-500'>{popupContent}</p>
+                    <div className='max-h-[60vh] overflow-auto'>
+                        {Array.isArray(popupContent) ? (
+                            <ul className='list-disc pl-5 space-y-2'>
+                                {popupContent.map((points, index) => (
+                                    <li key={index}>
+                                        <p className='text-sm text-gray-500'>{points}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className='text-sm text-gray-500'>{popupContent}</p>
+                        )}
                     </div>
                 ) : (
                     <></>
