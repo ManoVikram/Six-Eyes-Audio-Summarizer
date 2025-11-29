@@ -6,12 +6,12 @@ def summarize_text(transcript):
         Summarize the podcast transcript.
 
         Return exactly:
-        1) A list of concise bullet points
-        2) One short paragraph summary
+        - A list of concise bullet points
+        - One short paragraph summary
 
         Output format:
-        1) The bullet points should start with - and no title / sub-title
-        2) Bullet points and summary paragraph should by split by two \n characters and not title / sub-title
+        The bullet points should start with - and no title / sub-title
+        Bullet points and summary paragraph should by split by two \n characters and not title / sub-title
 
         Transcript:
         {transcript}
@@ -26,6 +26,8 @@ def summarize_text(transcript):
         ]
     )
     text = response["message"]["content"]
+
+    print(text)
 
     # Step 3 - Extract the bullet points from the response text
     bullet_points = [line.strip("- ").strip() for line in text.split("\n") if line.startswith("- ")]

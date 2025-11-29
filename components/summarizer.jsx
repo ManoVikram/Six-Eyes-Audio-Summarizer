@@ -17,6 +17,13 @@ const Summarizer = () => {
     const [isProcessing, setIsProcessing] = useState(false)
     const [generateBlogPost, setGenerateBlogPost] = useState(false)
     const [generateAudioSummary, setGenerateAudioSummary] = useState(false)
+    const [output, setOutput] = useState({
+        transcript: "",
+        summary: "",
+        bulletPoints: [],
+        blogPost: "",
+        summaryAudio: ""
+    })
 
     const inputFileRef = useRef(null)
 
@@ -46,6 +53,19 @@ const Summarizer = () => {
             setIsProcessing(true)
 
             const response = await processPodcast(file, file.name.split(".").pop(), generateBlogPost, generateAudioSummary)
+
+            setOutput({
+                transcript: response.transcript,
+                summary: response.summary_paragraph,
+                bulletPoints: response.bullet_points,
+                blogPost: response.blog_post,
+                summaryAudio: response.summary_audio_b64,
+            })
+
+            console.log(response);
+
+            console.log(output);
+            
 
             setIsProcessing(false)
         } else { }
@@ -92,15 +112,15 @@ const Summarizer = () => {
             </div>
 
             <div className="flex flex-1 rounded-3xl gap-4">
-                <ProcessedOption buttonTitle="View Transcript" popupTitle="Transcript" popupContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+                <ProcessedOption buttonTitle="View Transcript" popupTitle="Transcript" popupContent={output.transcript} />
 
-                <ProcessedOption buttonTitle="View Summary" popupTitle="Summary" popupContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+                <ProcessedOption buttonTitle="View Summary" popupTitle="Summary" popupContent={output.summary} />
 
-                <ProcessedOption buttonTitle="View Bullet Points" popupTitle="Bullet Points" popupContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+                <ProcessedOption buttonTitle="View Bullet Points" popupTitle="Bullet Points" popupContent={output.bulletPoints} />
 
-                <ProcessedOption buttonTitle="View Blog Post" popupTitle="Blog Post" popupContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+                <ProcessedOption buttonTitle="View Blog Post" popupTitle="Blog Post" popupContent={output.blogPost} />
 
-                <ProcessedOption buttonTitle="Listen to Summary Audio" popupTitle="Summary Audio" popupContent="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+                <ProcessedOption buttonTitle="Listen to Summary Audio" popupTitle="Summary Audio" popupContent={output.summaryAudio} isAudio />
             </div>
         </section>
     )

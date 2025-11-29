@@ -1,7 +1,7 @@
 import React from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
 
-const ProcessedOption = ({ buttonTitle, popupTitle, popupContent }) => {
+const ProcessedOption = ({ buttonTitle, popupTitle, popupContent, isAudio = false }) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -13,11 +13,18 @@ const ProcessedOption = ({ buttonTitle, popupTitle, popupContent }) => {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{popupTitle}</DialogTitle>
+
+                    <DialogDescription>
+                    </DialogDescription>
                 </DialogHeader>
 
-                <div className='max-h-[60dvh] overflow-auto'>
-                    <p className='text-sm text-gray-500'>{popupContent}</p>
-                </div>
+                {!isAudio ? (
+                    <div className='max-h-[60dvh] overflow-auto'>
+                        <p className='text-sm text-gray-500'>{popupContent}</p>
+                    </div>
+                ) : (
+                    <></>
+                )}
             </DialogContent>
         </Dialog>
     )
