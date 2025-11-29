@@ -50,7 +50,7 @@ def generate_blog_post(transcript):
     
     # Step 2 - Call the Ollama API to get the blog post
     response = ollama.chat(
-        model="llama2",
+        model="mistral",
         messages=[
             {"role": "system", "content": "You are a helpful assistant that writes detailed blog posts based on transcripts."},
             {"role": "user", "content": prompt}
