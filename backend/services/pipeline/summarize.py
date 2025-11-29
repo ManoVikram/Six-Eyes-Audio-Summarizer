@@ -30,7 +30,7 @@ def summarize_text(transcript):
     print(text)
 
     # Step 3 - Extract the bullet points from the response text
-    bullet_points = [line.strip("- ").strip() for line in text.split("\n") if line.startswith("- ")]
+    bullet_points = [line.strip("- ").strip() for line in text.split("\n") if line.strip().startswith("- ")]
 
     # Step 4 - Extract the summary paragraph from the response text
     paragraph_lines = [line.strip() for line in text.split("\n") if line.strip() != "" and not line.strip().startswith("- ")]
