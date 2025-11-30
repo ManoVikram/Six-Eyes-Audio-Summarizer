@@ -5,7 +5,7 @@ import { Loader2 } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import React, { useRef, useState } from 'react'
-import ProcessedOption from './processedOption'
+import ProcessedOption from '../../components/processedOption'
 
 const Player = dynamic(
     () => import("@lottiefiles/react-lottie-player").then(mod => mod.Player),
