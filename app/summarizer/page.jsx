@@ -1,6 +1,6 @@
 "use client"
 
-import { processPodcast } from '@/backend/services/lib/api/helpers'
+import { processPodcast } from '@/lib/api/helpers'
 import { Loader2 } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
