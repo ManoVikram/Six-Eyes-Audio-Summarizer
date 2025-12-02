@@ -72,3 +72,8 @@ curl --location 'http://localhost:8080/api/processaudio' \
     "tts_model": "openai_gpt-4o-mini-tts"
   }
 }
+
+## UI
+
+![Home Screen UI](/public/HomeScreenUI.png)
+
