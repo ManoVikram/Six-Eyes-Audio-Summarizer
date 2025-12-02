@@ -2,7 +2,7 @@ import Navbar from "@/components/navbar";
 import "./globals.css";
 
 export const metadata = {
-  title: "Podcast Summarizer",
+  title: "Six Eyes Podcast Summarizer",
   description: "Summarize podcasts and any audio with the help of AI",
 };
 

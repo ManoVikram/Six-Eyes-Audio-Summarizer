@@ -19,7 +19,7 @@ const Navbar = () => {
                         <Image src="/logo.svg" alt='logo' height={18} width={18} />
                     </div>
 
-                    <p>Podcast Summarizer</p>
+                    <p>Six Eyes Podcast Summarizer</p>
                 </div>
 
                 <div className="flex justify-between items-center py-1.5 px-1.5 bg-white rounded-full">
