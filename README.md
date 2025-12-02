@@ -39,7 +39,7 @@ protoc --proto_path=./proto --go_out=./api/proto --go_opt=paths=source_relative 
 
 ### Request
 
-```
+```bash
 curl --location 'http://localhost:8080/api/processaudio' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -52,6 +52,7 @@ curl --location 'http://localhost:8080/api/processaudio' \
 
 ### Response
 
+```
 {
   "transcript": " Earth. Christmas Day—does it not grow dearer to us every year? The summers come and go,  we rush to and fro on our little errands of business and pleasure. Great joys dawn in  our lives, dark shadows of bitter disappointment creep over them. We are glad, sorrowful, eager,  weary, well, ill. Life's heart beats strongly, and death is busy in its midst. We strive  for the beautiful, the true, and the good. We hide our faces in helpless agony of shame  and remorse. Yet again comes the dear day of days, with its blessed associations, memories,  hopes. Christmas—do you remember what that word meant to you when you were a child? What  a mysterious halo of light surrounded the day! How the very sound of its name suggested the  fragrance of the fir tree and wax candles and marvellous toys, and the far-off tinkle of sleigh.",
   "bullet_points": [
@@ -72,8 +73,10 @@ curl --location 'http://localhost:8080/api/processaudio' \
     "tts_model": "openai_gpt-4o-mini-tts"
   }
 }
+```
 
 ## UI
 
 ![Home Screen UI](/public/HomeScreenUI.png)
 
+https://github.com/user-attachments/assets/19f8afbf-07f2-40cf-b5de-4967f067c0d4
